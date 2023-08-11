@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicVillaAPI", "MagicVillaAPI\MagicVillaAPI.csproj", "{FF828925-DCBD-4CDA-AC92-303128E2B8E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicVilla_Web", "MagicVilla_Web\MagicVilla_Web.csproj", "{8A442D5A-C2E3-4FC0-8989-ADF7E7FB3922}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicVilla_Utilities", "MagicVilla_Utilities\MagicVilla_Utilities.csproj", "{79C567BC-B118-41F4-8362-BA7792507427}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF828925-DCBD-4CDA-AC92-303128E2B8E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF828925-DCBD-4CDA-AC92-303128E2B8E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF828925-DCBD-4CDA-AC92-303128E2B8E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF828925-DCBD-4CDA-AC92-303128E2B8E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A442D5A-C2E3-4FC0-8989-ADF7E7FB3922}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A442D5A-C2E3-4FC0-8989-ADF7E7FB3922}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A442D5A-C2E3-4FC0-8989-ADF7E7FB3922}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A442D5A-C2E3-4FC0-8989-ADF7E7FB3922}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79C567BC-B118-41F4-8362-BA7792507427}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79C567BC-B118-41F4-8362-BA7792507427}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79C567BC-B118-41F4-8362-BA7792507427}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79C567BC-B118-41F4-8362-BA7792507427}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {32C59E6B-9F11-419B-89B6-6FE3CEF8508F}
+	EndGlobalSection
+EndGlobal
