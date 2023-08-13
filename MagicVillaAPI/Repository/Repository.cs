@@ -1,4 +1,5 @@
 ﻿using MagicVillaAPI.Data;
+using MagicVillaAPI.Models;
 using MagicVillaAPI.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -20,12 +21,20 @@ namespace MagicVillaAPI.Repository
             await SaveAsync();
         }
 
-        public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>>? filter = null, string? IncludeProperties=null)
+        public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>>? filter = null, string? IncludeProperties=null, Pagination? pagination = null)
         {
             IQueryable<T> query = dbSet;
             if (filter != null)
             {
                 query = query.Where(filter);
+            }
+            if (pagination!=null&&pagination.pageSize > 0)
+            {
+                if (pagination.pageSize > 50)
+                {
+                    pagination.pageSize = 50;
+                }
+                query= query.Skip(pagination.pageSize*(pagination.pageNumber-1)).Take(pagination.pageSize);
             }
             if(IncludeProperties != null)
             {

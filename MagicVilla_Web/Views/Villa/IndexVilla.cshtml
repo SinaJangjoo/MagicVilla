@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MagicVilla_Web.Models.Dto.VillaDTO>
+﻿@model MagicVilla_Web.Models.VM.VillaIndexVM
 <br />
 <div class="container p-4 border">
     <div class="row pb-2">
@@ -26,7 +26,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			@foreach(var item in Model){
+			@foreach(var item in Model.Villas){
 				<tr>
 					<td>@item.Name</td>
 					<td>@item.Occupancy</td>
@@ -39,5 +39,42 @@
 			}
 		</tbody>
     </table>
+	<div class="row ">
 
+		<ul class="pagination justify-content-center" style="margin:20px 0">
+
+			@{
+				double dev = Convert.ToInt32(ViewData["count"]) / Model.pagination.pageSize;
+				int totalPages = (int)Math.Ceiling(dev);
+			}
+			@if (Model.pagination.pageNumber == 1)
+			{
+				<li class="page-item"><button class="btn" disabled>Previous</button></li>
+			}
+			else
+			{
+				<li class="page-item"><a class="page-link" asp-action="IndexVilla" asp-route-pageNumber="@(Model.pagination.pageNumber-1)">Previous</a></li>
+			}
+			@for (int i = 1; i < totalPages + 1; i++)
+			{
+				if (i == Model.pagination.pageNumber)
+				{
+					<li class="page-item"><a class="page-link active" asp-action="IndexVilla" asp-route-pageNumber="@i">@i</a></li>
+				}
+				else
+				{
+					<li class="page-item"><a class="page-link" asp-action="IndexVilla" asp-route-pageNumber="@i">@i</a></li>
+
+				}
+			}
+			@if (Model.pagination.pageNumber != totalPages)
+			{
+				<li class="page-item"><a class="page-link" asp-action="IndexVilla" asp-route-pageNumber="@(Model.pagination.pageNumber+1)">Next</a></li>
+			}
+			else
+			{
+				<li class="page-item"><button class="btn" disabled>Next</button></li>
+			}
+		</ul>
+	</div>
 </div>

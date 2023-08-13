@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System.Net;
 
 namespace MagicVillaAPI.Controllers
@@ -28,12 +29,28 @@ namespace MagicVillaAPI.Controllers
             this.response = new APIResponse();
         }
         [HttpGet]
+        [ResponseCache(CacheProfileName = "default30")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<APIResponse>> GetVillas()
+        public async Task<ActionResult<APIResponse>> GetVillas([FromQuery(Name ="filterOcuppancy")] int? Ocuppancy ,[FromQuery]string? Search, [FromBody]Pagination? pagination=null)
         {
             try
             {
-                var villaList = await dBVilla.GetAllAsync();
+                IEnumerable<Villa> villaList;
+                if (Ocuppancy > 0)
+                {
+                    villaList= await dBVilla.GetAllAsync(x=>x.Occupancy==Ocuppancy,pagination:pagination);
+                }
+                else
+                {
+                    villaList = await dBVilla.GetAllAsync(pagination: pagination);
+                }
+                if(!string.IsNullOrEmpty(Search))
+                {
+                    villaList = villaList.Where(x=>x.name.ToLower().Contains(Search));
+
+                }
+                //Pagination pagination = new Pagination() { pageSize=pageSize,pageNumber=pageNumber};
+                Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(pagination));
                 response.statusCode = HttpStatusCode.OK;
                 response.IsSuccess = true;
                 response.Result = mapper.Map<List<VillaDTO>>(villaList);
@@ -47,6 +64,7 @@ namespace MagicVillaAPI.Controllers
             }
         }
         [HttpGet("{id:int}", Name = "GetVilla")]
+        [ResponseCache(CacheProfileName = "default30")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

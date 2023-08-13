@@ -1,4 +1,5 @@
-﻿using static MagicVilla_Utilities.SD;
+﻿using MagicVilla_Web.Models.Dto;
+using static MagicVilla_Utilities.SD;
 
 namespace MagicVilla_Web.Models
 {

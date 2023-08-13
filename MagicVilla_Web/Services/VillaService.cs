@@ -27,14 +27,19 @@ namespace MagicVilla_Web.Services
             });
         }
 
-        public Task<T> GetAllAsync<T>(string token)
+        public Task<T> GetAllAsync<T>(string token, PaginationDTO? pagination=null)
         {
-            return SendAsync<T>(new APIRequest
-            {
+            APIRequest request = new APIRequest {
                 ApiType = SD.ApiType.GET,
                 Url = villaUrl + "/api/VillaAPI",
-                Token = token
-            });
+                Token = token,
+            };
+            if (pagination != null)
+            {
+                request.Data = pagination;
+
+            }
+            return SendAsync<T>(request);
         }
 
         public Task<T> GetAsync<T>(int id, string token)

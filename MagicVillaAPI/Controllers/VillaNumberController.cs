@@ -28,6 +28,7 @@ namespace MagicVillaAPI.Controllers
             response = new APIResponse();
         }
         [HttpGet]
+        [ResponseCache(CacheProfileName = "default30")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<APIResponse>> GetAllVillaNumbers()
@@ -53,6 +54,7 @@ namespace MagicVillaAPI.Controllers
             }
         }
         [HttpGet("{id:int}", Name = "GetVillaNumber")]
+        [ResponseCache(CacheProfileName = "default30")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

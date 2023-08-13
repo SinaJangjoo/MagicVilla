@@ -3,6 +3,7 @@ using MagicVillaAPI.Data;
 using MagicVillaAPI.Repository;
 using MagicVillaAPI.Repository.IRepository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
@@ -16,6 +17,13 @@ builder.Services.AddAutoMapper(typeof(MappingConfig));
 builder.Services.AddScoped<IVillaRepository, VillaRepository>();
 builder.Services.AddScoped<IVillaNumberRepository, VillaNumberRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+//builder.Services.AddApiVersioning(options =>
+//{
+//	options.AssumeDefaultVersionWhenUnspecified=true;
+//	options.DefaultApiVersion = new ApiVersion(1, 0);
+//});
+builder.Services.AddResponseCaching();
+
 //builder.Services.AddScoped<IRepository,Repository>();
 builder.Services.AddDbContext<MagicVillaDB>(options =>
 {
@@ -71,6 +79,13 @@ builder.Services.AddSwaggerGen(options =>
 		new List<string>()
 	}
 });
+});
+builder.Services.AddControllers(options =>
+{
+	options.CacheProfiles.Add("default30", new CacheProfile
+	{
+		Duration = 30,
+	});
 });
 
 var app = builder.Build();
