@@ -1,22 +1,19 @@
 ﻿using MagicVillaAPI.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace MagicVillaAPI.Data
 {
-    public class MagicVillaDB : IdentityDbContext<ApplicationUser>
+    public class MagicVillaDB : DbContext
     {
         public MagicVillaDB(DbContextOptions<MagicVillaDB> options):base(options)
         {
             
         }
-        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Villa> Villas { get; set; }
         public DbSet<LocalUser> LocalUsers { get; set; }
         public DbSet<VillaNumber> VillaNumbers { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Villa>().HasData(
                 new Villa
                 {

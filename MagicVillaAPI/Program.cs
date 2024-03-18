@@ -1,10 +1,8 @@
 using MagicVillaAPI;
 using MagicVillaAPI.Data;
-using MagicVillaAPI.Models;
 using MagicVillaAPI.Repository;
 using MagicVillaAPI.Repository.IRepository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -24,12 +22,6 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 //	options.AssumeDefaultVersionWhenUnspecified=true;
 //	options.DefaultApiVersion = new ApiVersion(1, 0);
 //});
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<MagicVillaDB>();
-builder.Services.Configure<IdentityOptions>(options =>
-{
-	options.Password.RequiredUniqueChars = 0;
-	options.Lockout.MaxFailedAccessAttempts = 4;
-});
 builder.Services.AddResponseCaching();
 
 //builder.Services.AddScoped<IRepository,Repository>();

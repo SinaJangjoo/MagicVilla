@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MagicVillaAPI.Data;
+using MagicVillaAPI.Migrations;
 using MagicVillaAPI.Models;
 using MagicVillaAPI.Models.Dto;
 using MagicVillaAPI.Repository;
